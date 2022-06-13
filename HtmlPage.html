@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/details.css" rel="stylesheet" />
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: url('d6e7582175c1445682cac0e621aabce4.jpg');
+        }
+
+        .outer {
+            background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
+            margin: 13px;
+        }
+
+        .button {
+            height: 60px;
+            width: 150px;
+            border-radius: 50px;
+        }
+
+        .outer button,
+        .outer span {
+            /* position: absolute;
+            top: 50%;
+            left: 70%;*/
+            transform: translate(-6%, -6%);
+        }
+
+        .outer button {
+            background: #111;
+            color: #f2f2f2;
+            outline: none;
+            border: none;
+            /*font-size:1px;*/
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .button button {
+            height: 50px;
+            width: 142px;
+            border-radius: 50px;
+            margin-left: 13px;
+            margin-top: 7px;
+        }
+
+        .outer span {
+            height: 100%;
+            width: 100%;
+            background: inherit;
+        }
+
+        .button span {
+            border-radius: 50%;
+        }
+
+        .btn-lightt:hover {
+            color: #ff1d1a;
+            background-color: #111111;
+            border-color: #f9fafb;
+        }
+
+        .outer:hover span:nth-child(1) {
+            filter: blur(7px);
+        }
+
+        .outer:hover span:nth-child(2) {
+            filter: blur(14px);
+        }
+
+        .outer {
+            animation: rotate 1.5s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #0096b1;
+            font-weight: bold;
+        }
+
+        .contant {
+            border: 2px solid #0096b1;
+            padding: 45px;
+            background-color: white;
+        }
+
+        #current-time {
+            font-size: 30px;
+        }
+
+        ul li {
+            color: black;
+            list-style: none;
+        }
+
+        .section_01 {
+            height: 100%;
+            position: fixed;
+            z-index: 100;
+            width: 100%;
+            background: #000;
+        }
+
+        .Loading {
+            height: 150px;
+            width: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: width 1s linear infinite;
+        }
+
+            .Loading span {
+                position: absolute;
+                height: 75px;
+                width: 75px;
+                background: rgb(255, 0, 0);
+                animation: rotate_01 1s linear infinite;
+            }
+
+                .Loading span:nth-child(1) {
+                    top: 0;
+                    right: 0;
+                    background-color: #f79f1f;
+                }
+
+                .Loading span:nth-child(2) {
+                    top: 0;
+                    left: 0;
+                    background-color: #12cb67;
+                }
+
+                .Loading span:nth-child(3) {
+                    bottom: 0;
+                    right: 0;
+                    background-color: #ed4c67;
+                }
+
+                .Loading span:nth-child(4) {
+                    bottom: 0;
+                    left: 0;
+                    background-color: #a1cb38;
+                }
+
+        @keyframes width {
+            0%, 10% {
+                width: 150px;
+                height: 150px
+            }
+
+            50% {
+                width: 220px;
+                height: 220px;
+            }
+
+            90%, 100% {
+                width: 150px;
+                height: 150px
+            }
+        }
+
+        @keyframes rotate_01 {
+            0%, 10% {
+                transform: rotate(0deg);
+            }
+
+            50%, 90%, 100% {
+                transform: rotate(90deg);
+            }
+        }
+
+        .white_loader {
+            width: 300px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, .5);
+            border-radius: 30px;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+            .white_loader div {
+                width: 0%;
+                height: 100%;
+                border-radius: 30px;
+                background-color: rgba(0, 255, 166);
+                animation: ainmation 3s linear infinite;
+            }
+
+        @keyframes ainmation {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="section_01">
+        <div class="Loading">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="white_loader">
+            <div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var sections = document.getElementsByClassName("section_01");
+        setTimeout(disappering, 3000)
+
+        function disappering() {
+            sections[0].classList.add('d-none');
+
+        }
+    </script>
+    <div class="contant">
+        <div>
+            <div class="header">
+                <h1>Alarm Clock</h1>
+
+            </div>
+            <div id="current-time" class="fw-bold " style="font-family:sans-serif;"></div>
+            <h1>Set Alarm(24-hour Clock)</h1>
+
+
+        </div>
+        <div>
+            <form class="user-input" id="formSetalarm">
+                <!--<div class="col-12">-->
+                <input type="number" placeholder="HH" name="Hours" class="col-3 rounded-pill ps-2" min="0" max="24"  required />
+                <input type="number" placeholder="MM" name="Min" class="col-3 rounded-pill ps-2" min="0" max="60" required />
+                <input type="number" placeholder="SS" name="sec" class="col-3 rounded-pill ps-2" min="0" max="60" required />
+                <select  required id="select" class="rounded-pill ps-2">
+                    <option selected>Zone</option>
+                    <option name="zone" value="AM">AM</option>
+                    <option name="zone" value="PM">PM</option>
+                </select>
+                <br />
+                <!--</div>-->
+                <div class="align-content-center align-items-center">
+                    <div class="outer button mx-auto"><button class="btn btn-lightt mt-2 " type="submit">Set Alarm</button><span></span></div>
+                    <!--<div class="outer button"><button class="btn btn-lightt  mt-2  " id="clearalarm" type="reset">Stop Alarm</button><span></span><span></span></div>-->
+                </div>
+            </form>
+            <audio name="audotest" id="alarm-audio" class="d-none" controls>
+
+                    <source src="NewFolder1/alarm-clock-01.mp3" type="audio/mpeg" />
+  
+                <!--<source src="http://soundbible.com/grab.php?id=1252&type=mp3" type="audio/mp3" />-->
+
+            </audio>
+            <hr />
+            <h2>Alarm Set</h2>
+
+            <ul id="set-alarm-list">
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="js/bootstrap.js"></script>
+    <script>
+        var alarmList = [];
+
+        var alarmAudio = document.getElementById('alarm-audio');
+        var clearalarm = document.getElementById('clearalarm');
+        var sel = document.getElementById('select');
+
+        function getTime(hours, minutes, seconds, selec) {
+         
+           
+
+            if (minutes / 10 < 1) {
+                minutes = "0" + minutes;
+            }
+            if (seconds / 10 < 1) {
+                seconds = "0" + seconds;
+            }
+            if (hours / 10 < 1) { hours = "0" + hours; }
+           
+            if (minutes === "0") {
+                minutes = "00";
+            }
+            if (seconds === "0") {
+                seconds = "00";
+            }
+            return `${hours}:${minutes}:${seconds} ${selec}`;
+        };
+        var currentTime = "";
+        Time();
+        
+      
+
+        function Time() {
+            var curtime = document.getElementById('current-time');
+            var currentdate = new Date;
+            var hours = currentdate.getHours();
+            var minutes = currentdate.getMinutes();
+            var secounds = currentdate.getSeconds();
+            if (hours == 0) {
+                hours = 12;
+            }
+            if (hours >= 12) {
+                var Zone = "PM";
+
+            }
+            else { Zone = "AM"; }
+
+            if (hours / 10 < 1) { hours = "0" + hours; }
+            if (minutes / 10 < 1) { minutes = "0" + minutes; }
+            if (secounds / 10 < 1) {
+                secounds = "0" + secounds;
+            }
+
+            curtime.textContent = `${hours}:${minutes}:${secounds}  ${Zone}`;
+            currentTime = `${hours}:${minutes}:${secounds}  ${Zone}`;
+
+
+            alarmAudio.load();
+
+ 
+            if (alarmList != null && alarmList.length > 0) {
+
+                var dlist = alarmList.filter(function (elm) {
+                    console.log(currentdate);
+                    console.log(elm);
+                    console.log(currentdate - elm);
+
+                    return (currentdate - elm) >= 0;
+
+
+                });
+
+                if (dlist.length > 0) {
+          
+                    /* alert(`Hey! it is ${alrm}`);*/
+                    alarmAudio.play();
+                }
+            }
+
+
+
+
+        }
+        setInterval(Time, 1000);
+        var alrm = "";
+        var form = document.getElementById('formSetalarm');
+
+
+
+        var ul = document.getElementById('set-alarm-list');
+        form.addEventListener('submit', function (event) {
+            /* alert('alaa');*/
+            event.preventDefault();
+            var Hour = form.Hours.value;
+            var Min = form.Min.value;
+            var SEC = form.sec.value;
+            var selec = sel.options[sel.selectedIndex].text;
+            /*            var zone = form.zone;*/
+            if (Hour >= 12) {
+                var Zone = "PM";
+            }
+            else { Zone = "AM"; }
+
+            alrm = getTime(Hour, Min, SEC, selec);
+            /*       alert(alrm);*/
+
+
+
+            if (alarmList.includes(alrm)) {
+                alert(`alrm ${alrm} is already exists.`);
+
+            }
+            else {
+                ul.innerHTML += `<li>${alrm}
+                    <button id="deletealarm" class="btn    ms-5 rounded-pill" value="${alrm}"  onclick = "remove(this.value)" style="background-color: #111111; border-color: #f9fafb; color:white;" >Stop Alarm</button>
+                      </li >`;
+
+
+
+                var currentDate = new Date();
+                var day = currentDate.getDate()
+                var month = currentDate.getMonth() + 1
+                var year = currentDate.getFullYear()
+                console.log(currentDate);
+
+                currentDate.setHours(Hour, Min, SEC);
+                console.log(currentDate);
+
+                alarmList.push(currentDate);
+            }
+
+            form.reset();
+
+
+
+        });
+
+  //      clearalarm.addEventListener('click', function () {
+  //          alarmAudio.onpause();
+
+  ///*          alarmAudio.src = "";*/
+  //      });
+
+
+
+
+
+        function remove(value) {
+            ul.addEventListener('click', function (event) {
+                var elm = event.target;
+                var tagname = elm.nodeName;
+              /*  alert(tagname);*/
+                if (tagname.toLowerCase() == 'button') {
+                    for (var i = 0; i < alarmList.length; i++) {
+                        if (alarmList[i] == value) {
+                            alarmList.splice(alarmList[i], 1);
+                        }
+                    }
+                    ul.removeChild(elm.parentElement);
+                    alarmAudio.src = "";
+                    event.stopPropagation();
+                    event.preventDefault();
+
+                }
+            });
+        }
+
+
+
+    </script>
+</body>
+</html>
